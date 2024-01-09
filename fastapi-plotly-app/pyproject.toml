@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "fastapi-plotly-app"
+version = "0.1.0"
+description = ""
+authors = ["Ken Robinson <kenrobinsonter@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = {extras = ["all"], version = "^0.108.0"}
+plotly = "^5.18.0"
+pandas = "^2.1.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
