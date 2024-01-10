@@ -1,11 +1,22 @@
 from fastapi import FastAPI
 import uvicorn
 import plotly.express as px
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from typing import Union
 
 app = FastAPI(
     title='World Metrics DS API',
     description='Visualize world metrics from Gapminder data',
     docs_url='/'
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 dataframe = px.data.gapminder().rename(columns={
@@ -15,7 +26,7 @@ dataframe = px.data.gapminder().rename(columns={
     'gdpPercap': 'GDP Per Capita'
 })
 
-@app.get('/worldviz')
+@app.get('/api/worldviz')
 async def worldviz(metric, country):
     """
     Visualize world metrics from Gapminder data
